@@ -131,6 +131,10 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
+LOGOUT_REDIRECT_URL = '/api/login/'
+LOGIN_REDIRECT_URL = '/api/success/'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
