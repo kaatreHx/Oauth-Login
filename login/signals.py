@@ -11,14 +11,12 @@ def google_login_handler(request, sociallogin, **kwargs):
         user = sociallogin.user
         extra_data = sociallogin.account.extra_data
 
-        # Get token
-        try:
-            token_obj = SocialToken.objects.get(account=sociallogin.account)
-            access_token = token_obj.token
-            id_token = token_obj.token_secret  # often where Google stores id_token
-        except SocialToken.DoesNotExist:
-            access_token = None
-            id_token = None
+        access_token = None
+        id_token = None
+
+        if hasattr(sociallogin, 'token'):
+            access_token = getattr(sociallogin.token, 'token', None)
+            id_token = getattr(sociallogin.token, 'token_secret', None)
 
         print("\n✅ Google OAuth Login Successful")
         print(f"User: {user.email}")
@@ -27,4 +25,3 @@ def google_login_handler(request, sociallogin, **kwargs):
 
         print("🔑 Access Token:", access_token)
         print("🆔 ID Token:", id_token)
-        print("🆔 ID Token from extra_data:", extra_data)
