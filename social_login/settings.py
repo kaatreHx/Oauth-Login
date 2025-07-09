@@ -125,16 +125,18 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': ''
         },
         'SCOPE': [
-            'profile',
+            'openid',     # 👈 required for id_token
             'email',
-            'openid',  # 🔥 this is REQUIRED to get id_token
+            'profile'
         ],
         'AUTH_PARAMS': {
-            'access_type': 'online',  # or 'offline' if you want refresh token
-            'prompt': 'consent'       # forces re-consent to ensure fresh tokens
+            'access_type': 'online',
+            'prompt': 'consent',  # 👈 forces fresh tokens
         }
     }
 }
+
+
 
 
 
