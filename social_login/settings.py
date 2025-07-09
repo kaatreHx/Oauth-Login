@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'login',
+    'login.apps.LoginConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -119,16 +119,23 @@ load_dotenv()
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
         'APP': {
             'client_id': os.getenv('GOOGLE_CLIENT_ID'),
             'secret': os.getenv('GOOGLE_CLIENT_SECRET'),
             'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+            'openid',  # 🔥 this is REQUIRED to get id_token
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',  # or 'offline' if you want refresh token
+            'prompt': 'consent'       # forces re-consent to ensure fresh tokens
         }
     }
 }
+
 
 
 LOGOUT_REDIRECT_URL = '/api/login/'
