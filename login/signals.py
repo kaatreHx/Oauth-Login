@@ -19,9 +19,4 @@ def google_login_handler(request, sociallogin, **kwargs):
             id_token = getattr(sociallogin.token, 'token_secret', None)
 
         print("\n✅ Google OAuth Login Successful")
-        print(f"User: {user.email}")
-        print("📦 Raw Google User Info:")
-        print(json.dumps(extra_data, indent=2))
 
-        print("🔑 Access Token:", access_token)
-        print("🆔 ID Token:", id_token)
