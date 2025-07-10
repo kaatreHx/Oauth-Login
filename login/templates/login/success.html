@@ -9,8 +9,8 @@
     <h1>Success</h1>
     <p>Successfully logged in</p>
     {% if user.is_authenticated %}
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Logged Username:</strong> {{ user.username }}</p>
+        <p><strong>Logged Email:</strong> {{ user.email }}</p>
     {% endif %}
     <a href="{% url 'logout' %}">Logout</a>
 </body>
